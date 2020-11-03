@@ -1,4 +1,4 @@
-# ************** STUDENTS EDIT THIS FILE **************
+# ************** EDIT THIS FILE **************
 
 from SteeringBehaviors import Wander
 import SimulationEnvironment as sim
@@ -15,7 +15,7 @@ def collect_training_data(total_actions):
     steering_behavior = Wander(action_repeat)
 
     num_params = 7
-    # STUDENTS: network_params will be used to store your training data
+    # network_params will be used to store your training data
     # a single sample will be comprised of: sensor_readings, action, collision
     network_params = []
 
@@ -37,16 +37,16 @@ def collect_training_data(total_actions):
 
             if collision:
                 steering_behavior.reset_action()
-                # STUDENTS NOTE: this statement only EDITS collision of PREVIOUS action
+                # NOTE: this statement only EDITS collision of PREVIOUS action
                 # if current action is very new.
                 if action_timestep < action_repeat * .3:   # in case prior action caused collision
                     network_params[-1][-1] = collision  # share collision result with prior action
         network_params.append(list(sensor_readings) + [action] + [collision])
 
-    # STUDENTS: Update network_params.
+    # Update network_params.
 
     np.savetxt("./saved/submission.csv", np.array(network_params), delimiter=",")
-    # STUDENTS: Save .csv here. Remember rows are individual samples, the first 5
+    # Save .csv here. Remember rows are individual samples, the first 5
     # columns are sensor values, the 6th is the action, and the 7th is collision.
     # Do not title the columns. Your .csv should look like the provided sample.
 

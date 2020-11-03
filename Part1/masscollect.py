@@ -1,4 +1,4 @@
-# ************** STUDENTS EDIT THIS FILE **************
+# ************** EDIT THIS FILE **************
 
 from SteeringBehaviors import Wander
 import SimulationEnvironment as sim
@@ -15,7 +15,7 @@ def collect_training_data(total_actions, total_batches):
     steering_behavior = Wander(action_repeat)
 
     num_params = 7
-    # STUDENTS: network_params will be used to store your training data
+    # network_params will be used to store your training data
     # a single sample will be comprised of: sensor_readings, action, collision
 
     for stkv in range(total_batches):
@@ -38,7 +38,7 @@ def collect_training_data(total_actions, total_batches):
 
                 if collision:
                     steering_behavior.reset_action()
-                    # STUDENTS NOTE: this statement only EDITS collision of PREVIOUS action
+                    # NOTE: this statement only EDITS collision of PREVIOUS action
                     # if current action is very new.
                     if action_timestep < action_repeat * .3:   # in case prior action caused collision
                         network_params[-1][-1] = collision  # share collision result with prior action
